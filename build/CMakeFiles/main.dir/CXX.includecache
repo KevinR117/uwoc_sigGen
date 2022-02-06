@@ -12,9 +12,25 @@ stdint.h
 stdbool.h
 -
 
-/root/signal_generator/main.cpp
-rp.h
-/root/signal_generator/rp.h
+/root/signal_generator/generator.cpp
+generator.h
+/root/signal_generator/generator.h
+
+/root/signal_generator/generator.h
 iostream
 -
+rp.h
+/root/signal_generator/rp.h
+
+/root/signal_generator/main.cpp
+iostream
+-
+thread
+-
+atomic
+-
+rp.h
+/root/signal_generator/rp.h
+generator.h
+/root/signal_generator/generator.h
 
