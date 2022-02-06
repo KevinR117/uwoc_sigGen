@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/opt/redpitaya/include/rp.h
+stdint.h
+-
+stdbool.h
+-
+
+/root/signal_generator/main.cpp
+rp.h
+/root/signal_generator/rp.h
+iostream
+-
+
