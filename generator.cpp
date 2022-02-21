@@ -35,8 +35,11 @@ void Generator::setParameters(float amp_, float freq_, uint32_t waveformSize_)
     this->applyParameters();
 }
 
-void Generator::initGen()
+void Generator::initGen(redundancy_t redundancy_)
 {
+    // Set redundancy
+    m_red = redundancy_;
+
     if (rp_IsApiInit())
     {
         // Trigger

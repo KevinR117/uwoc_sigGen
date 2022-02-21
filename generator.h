@@ -25,7 +25,7 @@ public:
 
     void setParameters(float amp_, float freq_, uint32_t waveformSize_);
 
-    void initGen();
+    void initGen(redundancy_t redundancy_);
 
     void resetGen();
 

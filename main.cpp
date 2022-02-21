@@ -100,12 +100,12 @@ int main()
         fprintf(stderr, "Rp api init failed!\n");
     }
 
-    bool data[256];
+    bool data[2048];
     bool current = false;
-    for (uint32_t i = 0; i < 256; i++)
+    for (uint32_t i = 0; i < 2048; i++)
     {
 	data[i] = current;
-	if (i > 100 && i < 200)
+	if (i > 1000 && i < 1200)
 	{
 	    data[i] = 0;
 	}
@@ -115,12 +115,12 @@ int main()
     Generator gen;
 
     gen.resetGen();
-    gen.initGen();
-    gen.setParameters(1.0, 16276.04166, 16384);
+    gen.initGen(Generator::RED_8);
+    gen.setParameters(1.0, 190.748689, 16384);
 
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
-    gen.genWaveform(data, 256);
+    gen.genWaveform(data, 2048);
 
 //    if(rp_Init() != RP_OK){
 //        fprintf(stderr, "Rp api init failed!\n");
