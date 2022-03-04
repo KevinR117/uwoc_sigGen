@@ -123,6 +123,33 @@ main/fast:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+buffer.o: buffer.cpp.o
+
+.PHONY : buffer.o
+
+# target to build an object file
+buffer.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/buffer.cpp.o
+.PHONY : buffer.cpp.o
+
+buffer.i: buffer.cpp.i
+
+.PHONY : buffer.i
+
+# target to preprocess a source file
+buffer.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/buffer.cpp.i
+.PHONY : buffer.cpp.i
+
+buffer.s: buffer.cpp.s
+
+.PHONY : buffer.s
+
+# target to generate assembly for a file
+buffer.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/buffer.cpp.s
+.PHONY : buffer.cpp.s
+
 generator.o: generator.cpp.o
 
 .PHONY : generator.o
@@ -149,6 +176,33 @@ generator.s: generator.cpp.s
 generator.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/generator.cpp.s
 .PHONY : generator.cpp.s
+
+generator_thread.o: generator_thread.cpp.o
+
+.PHONY : generator_thread.o
+
+# target to build an object file
+generator_thread.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/generator_thread.cpp.o
+.PHONY : generator_thread.cpp.o
+
+generator_thread.i: generator_thread.cpp.i
+
+.PHONY : generator_thread.i
+
+# target to preprocess a source file
+generator_thread.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/generator_thread.cpp.i
+.PHONY : generator_thread.cpp.i
+
+generator_thread.s: generator_thread.cpp.s
+
+.PHONY : generator_thread.s
+
+# target to generate assembly for a file
+generator_thread.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/generator_thread.cpp.s
+.PHONY : generator_thread.cpp.s
 
 main.o: main.cpp.o
 
@@ -186,9 +240,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
+	@echo "... buffer.o"
+	@echo "... buffer.i"
+	@echo "... buffer.s"
 	@echo "... generator.o"
 	@echo "... generator.i"
 	@echo "... generator.s"
+	@echo "... generator_thread.o"
+	@echo "... generator_thread.i"
+	@echo "... generator_thread.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

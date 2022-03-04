@@ -4,10 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/root/signal_generator/buffer.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/buffer.cpp.o"
-  "/root/signal_generator/generator.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/generator.cpp.o"
-  "/root/signal_generator/generator_thread.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/generator_thread.cpp.o"
-  "/root/signal_generator/main.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/main.cpp.o"
+  "/root/signal_generator/test.cpp" "/root/signal_generator/build/CMakeFiles/t.dir/test.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -19,7 +16,6 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/opt/redpitaya/include"
   )
 
 # Targets to which this target links.

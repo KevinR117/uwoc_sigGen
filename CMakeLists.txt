@@ -12,7 +12,7 @@ add_definitions(-DBOOST_SYSTEM_NO_DEPRECATED)
 set(librp /opt/redpitaya/lib/librp.so)
 set(librp_include /opt/redpitaya/include)
 
-add_executable(main main.cpp generator.cpp)
+add_executable(main main.cpp generator.cpp generator_thread.cpp buffer.cpp)
 target_include_directories(main PUBLIC ${Boost_INCLUDE_DIRS})
 target_include_directories(main PUBLIC ${librp_include})
 target_link_libraries(main PUBLIC ${Boost_LIBRARIES})

@@ -1,5 +1,7 @@
 #include "generator.h"
 
+#include <chrono>
+
 Generator::~Generator()
 {
     if (m_waveform != nullptr)
@@ -54,7 +56,7 @@ void Generator::initGen(redundancy_t redundancy_)
         rp_GenBurstRepetitions(RP_CH_1, 1);
 
 	// Enable output
-	rp_GenOutEnable(RP_CH_1);
+        rp_GenOutEnable(RP_CH_1);
     }
     else
     {
@@ -118,7 +120,6 @@ void Generator::genWaveform(const bool *data_, uint32_t size_) const
             }
 
 	    rp_GenArbWaveform(RP_CH_1, m_waveform, m_waveformSize);
-
             this->generate();
         }
     }

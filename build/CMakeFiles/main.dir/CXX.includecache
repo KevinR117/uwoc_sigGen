@@ -12,15 +12,45 @@ stdint.h
 stdbool.h
 -
 
+/root/signal_generator/buffer.cpp
+buffer.h
+/root/signal_generator/buffer.h
+
+/root/signal_generator/buffer.h
+cstdint
+-
+mutex
+-
+iostream
+-
+
 /root/signal_generator/generator.cpp
 generator.h
 /root/signal_generator/generator.h
+chrono
+-
 
 /root/signal_generator/generator.h
 iostream
 -
 rp.h
 /root/signal_generator/rp.h
+
+/root/signal_generator/generator_thread.cpp
+generator_thread.h
+/root/signal_generator/generator_thread.h
+
+/root/signal_generator/generator_thread.h
+thread
+-
+bitset
+-
+atomic
+-
+generator.h
+/root/signal_generator/generator.h
+buffer.h
+/root/signal_generator/buffer.h
 
 /root/signal_generator/main.cpp
 iostream
@@ -31,6 +61,6 @@ atomic
 -
 rp.h
 /root/signal_generator/rp.h
-generator.h
-/root/signal_generator/generator.h
+generator_thread.h
+/root/signal_generator/generator_thread.h
 

@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/main.dir/main.cpp.o"
   "CMakeFiles/main.dir/generator.cpp.o"
+  "CMakeFiles/main.dir/generator_thread.cpp.o"
+  "CMakeFiles/main.dir/buffer.cpp.o"
   "main.pdb"
   "main"
 )
