@@ -1,13 +1,31 @@
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
+  "C"
   "CXX"
   )
 # The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_C
+  "/root/signal_generator/kiss_fft.c" "/root/signal_generator/build/CMakeFiles/main.dir/kiss_fft.c.o"
+  )
+set(CMAKE_C_COMPILER_ID "GNU")
+
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_C
+  "BOOST_ERROR_CODE_HEADER_ONLY"
+  "BOOST_SYSTEM_NO_DEPRECATED"
+  )
+
+# The include file search paths:
+set(CMAKE_C_TARGET_INCLUDE_PATH
+  "/opt/redpitaya/include"
+  )
 set(CMAKE_DEPENDS_CHECK_CXX
   "/root/signal_generator/buffer.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/buffer.cpp.o"
   "/root/signal_generator/generator.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/generator.cpp.o"
   "/root/signal_generator/generator_thread.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/generator_thread.cpp.o"
   "/root/signal_generator/main.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/main.cpp.o"
+  "/root/signal_generator/reader.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/reader.cpp.o"
+  "/root/signal_generator/reader_thread.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/reader_thread.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

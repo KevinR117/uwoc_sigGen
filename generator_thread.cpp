@@ -65,6 +65,7 @@ void GeneratorThread::addData(uint8_t *data_, uint32_t size_)
 
 void GeneratorThread::sendNextFrame()
 {
+    std::cout << "SENT FRAME" << std::endl;
     uint8_t byteSize = 8;
     uint8_t bytes[FRAME_SIZE_BYTES];
     m_buffer->readAvailable(FRAME_SIZE_BYTES, bytes, FRAME_SIZE_BYTES);
@@ -94,4 +95,6 @@ void GeneratorThread::sendNextFrame()
     }
     // Generate
     m_generatorInstance.genWaveform(bits, FRAME_SIZE_BITS);
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(250));
 }

@@ -3,6 +3,7 @@
 #include <atomic>
 
 #include "rp.h"
+#include "reader_thread.h"
 #include "generator_thread.h"
 
 //int initSignalGenerator()
@@ -100,24 +101,29 @@ int main()
         fprintf(stderr, "Rp api init failed!\n");
     }
 
+    ReaderThread read;
+    read.init();
+    read.start();
+
     GeneratorThread gen;
     gen.init();
     gen.start();
 
-    uint8_t data[2048];
+    uint8_t data[510];
     uint8_t c = 'U';
-    for (uint32_t i = 0; i < 2048; i++)
+    for (uint32_t i = 0; i < 510; i++)
     {
         data[i] = c;
     }
 
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
-    gen.addData(data, 2048);
+    gen.addData(data, 510);
 
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
     gen.stop();
+    read.stop();
 
     rp_Release();
 

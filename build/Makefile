@@ -204,6 +204,33 @@ generator_thread.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/generator_thread.cpp.s
 .PHONY : generator_thread.cpp.s
 
+kiss_fft.o: kiss_fft.c.o
+
+.PHONY : kiss_fft.o
+
+# target to build an object file
+kiss_fft.c.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/kiss_fft.c.o
+.PHONY : kiss_fft.c.o
+
+kiss_fft.i: kiss_fft.c.i
+
+.PHONY : kiss_fft.i
+
+# target to preprocess a source file
+kiss_fft.c.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/kiss_fft.c.i
+.PHONY : kiss_fft.c.i
+
+kiss_fft.s: kiss_fft.c.s
+
+.PHONY : kiss_fft.s
+
+# target to generate assembly for a file
+kiss_fft.c.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/kiss_fft.c.s
+.PHONY : kiss_fft.c.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -231,6 +258,60 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+reader.o: reader.cpp.o
+
+.PHONY : reader.o
+
+# target to build an object file
+reader.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/reader.cpp.o
+.PHONY : reader.cpp.o
+
+reader.i: reader.cpp.i
+
+.PHONY : reader.i
+
+# target to preprocess a source file
+reader.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/reader.cpp.i
+.PHONY : reader.cpp.i
+
+reader.s: reader.cpp.s
+
+.PHONY : reader.s
+
+# target to generate assembly for a file
+reader.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/reader.cpp.s
+.PHONY : reader.cpp.s
+
+reader_thread.o: reader_thread.cpp.o
+
+.PHONY : reader_thread.o
+
+# target to build an object file
+reader_thread.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/reader_thread.cpp.o
+.PHONY : reader_thread.cpp.o
+
+reader_thread.i: reader_thread.cpp.i
+
+.PHONY : reader_thread.i
+
+# target to preprocess a source file
+reader_thread.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/reader_thread.cpp.i
+.PHONY : reader_thread.cpp.i
+
+reader_thread.s: reader_thread.cpp.s
+
+.PHONY : reader_thread.s
+
+# target to generate assembly for a file
+reader_thread.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/reader_thread.cpp.s
+.PHONY : reader_thread.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -249,9 +330,18 @@ help:
 	@echo "... generator_thread.o"
 	@echo "... generator_thread.i"
 	@echo "... generator_thread.s"
+	@echo "... kiss_fft.o"
+	@echo "... kiss_fft.i"
+	@echo "... kiss_fft.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... reader.o"
+	@echo "... reader.i"
+	@echo "... reader.s"
+	@echo "... reader_thread.o"
+	@echo "... reader_thread.i"
+	@echo "... reader_thread.s"
 .PHONY : help
 
 

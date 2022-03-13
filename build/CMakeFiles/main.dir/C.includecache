@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/root/signal_generator/_kiss_fft_guts.h
+kiss_fft.h
+/root/signal_generator/kiss_fft.h
+limits.h
+-
+alloca.h
+-
+
+/root/signal_generator/kiss_fft.c
+_kiss_fft_guts.h
+/root/signal_generator/_kiss_fft_guts.h
+
+/root/signal_generator/kiss_fft.h
+stdlib.h
+-
+stdio.h
+-
+math.h
+-
+string.h
+-
+xmmintrin.h
+-
+sys/types.h
+-
+
