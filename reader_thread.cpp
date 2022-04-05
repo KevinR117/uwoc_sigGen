@@ -6,7 +6,7 @@ ReaderThread::ReaderThread()
     *m_stopReadThread = false;
 
     m_buffer = new float[RECV_SIZE];
-    m_rawBuffer = new bool[OUT_SIZE];
+    m_rawBuffer = new uint8_t[OUT_SIZE];
     m_utilBuffer = new uint8_t[FRAME_SIZE];
 }
 
@@ -20,19 +20,19 @@ ReaderThread::~ReaderThread()
 
     if (m_buffer != nullptr)
     {
-        delete m_buffer;
+        delete[] m_buffer;
         m_buffer = nullptr;
     }
 
     if (m_rawBuffer != nullptr)
     {
-        delete m_rawBuffer;
+        delete[] m_rawBuffer;
         m_rawBuffer = nullptr;
     }
 
     if (m_utilBuffer != nullptr)
     {
-        delete m_utilBuffer;
+        delete[] m_utilBuffer;
         m_utilBuffer = nullptr;
     }
 }

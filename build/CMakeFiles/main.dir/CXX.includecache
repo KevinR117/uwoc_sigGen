@@ -12,11 +12,11 @@ stdint.h
 stdbool.h
 -
 
-/root/signal_generator/buffer.cpp
+/root/uwoc_sigGen/buffer.cpp
 buffer.h
-/root/signal_generator/buffer.h
+/root/uwoc_sigGen/buffer.h
 
-/root/signal_generator/buffer.h
+/root/uwoc_sigGen/buffer.h
 cstdint
 -
 mutex
@@ -24,23 +24,23 @@ mutex
 iostream
 -
 
-/root/signal_generator/generator.cpp
+/root/uwoc_sigGen/generator.cpp
 generator.h
-/root/signal_generator/generator.h
+/root/uwoc_sigGen/generator.h
 chrono
 -
 
-/root/signal_generator/generator.h
+/root/uwoc_sigGen/generator.h
 iostream
 -
 rp.h
-/root/signal_generator/rp.h
+/root/uwoc_sigGen/rp.h
 
-/root/signal_generator/generator_thread.cpp
+/root/uwoc_sigGen/generator_thread.cpp
 generator_thread.h
-/root/signal_generator/generator_thread.h
+/root/uwoc_sigGen/generator_thread.h
 
-/root/signal_generator/generator_thread.h
+/root/uwoc_sigGen/generator_thread.h
 thread
 -
 bitset
@@ -48,11 +48,11 @@ bitset
 atomic
 -
 generator.h
-/root/signal_generator/generator.h
+/root/uwoc_sigGen/generator.h
 buffer.h
-/root/signal_generator/buffer.h
+/root/uwoc_sigGen/buffer.h
 
-/root/signal_generator/kiss_fft.h
+/root/uwoc_sigGen/kiss_fft.h
 stdlib.h
 -
 stdio.h
@@ -66,7 +66,7 @@ xmmintrin.h
 sys/types.h
 -
 
-/root/signal_generator/main.cpp
+/root/uwoc_sigGen/main.cpp
 iostream
 -
 thread
@@ -74,19 +74,19 @@ thread
 atomic
 -
 rp.h
-/root/signal_generator/rp.h
+/root/uwoc_sigGen/rp.h
 reader_thread.h
-/root/signal_generator/reader_thread.h
+/root/uwoc_sigGen/reader_thread.h
 generator_thread.h
-/root/signal_generator/generator_thread.h
+/root/uwoc_sigGen/generator_thread.h
 
-/root/signal_generator/reader.cpp
+/root/uwoc_sigGen/reader.cpp
 chrono
 -
 reader.h
-/root/signal_generator/reader.h
+/root/uwoc_sigGen/reader.h
 
-/root/signal_generator/reader.h
+/root/uwoc_sigGen/reader.h
 iostream
 -
 bitset
@@ -94,15 +94,15 @@ bitset
 atomic
 -
 rp.h
-/root/signal_generator/rp.h
+/root/uwoc_sigGen/rp.h
 kiss_fft.h
-/root/signal_generator/kiss_fft.h
+/root/uwoc_sigGen/kiss_fft.h
 
-/root/signal_generator/reader_thread.cpp
+/root/uwoc_sigGen/reader_thread.cpp
 reader_thread.h
-/root/signal_generator/reader_thread.h
+/root/uwoc_sigGen/reader_thread.h
 
-/root/signal_generator/reader_thread.h
+/root/uwoc_sigGen/reader_thread.h
 thread
 -
 atomic
@@ -110,5 +110,5 @@ atomic
 functional
 -
 reader.h
-/root/signal_generator/reader.h
+/root/uwoc_sigGen/reader.h
 

@@ -34,9 +34,9 @@ private:
 
     static constexpr const uint32_t RECV_SIZE = ADC_BUFFER_SIZE;
 
-    static constexpr const uint32_t OUT_SIZE = (RECV_SIZE / RED) - (RED * 8);
+    static constexpr const uint32_t OUT_SIZE = 2040;
 
-    static constexpr const uint32_t FRAME_SIZE = OUT_SIZE / 8;
+    static constexpr const uint32_t FRAME_SIZE = 255;
 
     std::thread m_readThread;
 
@@ -46,7 +46,7 @@ private:
 
     float* m_buffer;
 
-    bool* m_rawBuffer;
+    uint8_t* m_rawBuffer;
 
     uint8_t* m_utilBuffer;
 };

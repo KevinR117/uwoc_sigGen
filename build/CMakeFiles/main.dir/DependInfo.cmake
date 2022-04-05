@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/root/signal_generator/kiss_fft.c" "/root/signal_generator/build/CMakeFiles/main.dir/kiss_fft.c.o"
+  "/root/uwoc_sigGen/kiss_fft.c" "/root/uwoc_sigGen/build/CMakeFiles/main.dir/kiss_fft.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -20,12 +20,12 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "/opt/redpitaya/include"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/root/signal_generator/buffer.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/buffer.cpp.o"
-  "/root/signal_generator/generator.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/generator.cpp.o"
-  "/root/signal_generator/generator_thread.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/generator_thread.cpp.o"
-  "/root/signal_generator/main.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/main.cpp.o"
-  "/root/signal_generator/reader.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/reader.cpp.o"
-  "/root/signal_generator/reader_thread.cpp" "/root/signal_generator/build/CMakeFiles/main.dir/reader_thread.cpp.o"
+  "/root/uwoc_sigGen/buffer.cpp" "/root/uwoc_sigGen/build/CMakeFiles/main.dir/buffer.cpp.o"
+  "/root/uwoc_sigGen/generator.cpp" "/root/uwoc_sigGen/build/CMakeFiles/main.dir/generator.cpp.o"
+  "/root/uwoc_sigGen/generator_thread.cpp" "/root/uwoc_sigGen/build/CMakeFiles/main.dir/generator_thread.cpp.o"
+  "/root/uwoc_sigGen/main.cpp" "/root/uwoc_sigGen/build/CMakeFiles/main.dir/main.cpp.o"
+  "/root/uwoc_sigGen/reader.cpp" "/root/uwoc_sigGen/build/CMakeFiles/main.dir/reader.cpp.o"
+  "/root/uwoc_sigGen/reader_thread.cpp" "/root/uwoc_sigGen/build/CMakeFiles/main.dir/reader_thread.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

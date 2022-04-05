@@ -7,31 +7,32 @@ Reader::Reader()
     m_cpxSignal = new kiss_fft_cpx[ADC_BUFFER_SIZE];
     m_cpxPreamble = new kiss_fft_cpx[ADC_BUFFER_SIZE];
     m_cpxCorr = new kiss_fft_cpx[ADC_BUFFER_SIZE];
+    m_preambleRed = new uint8_t[8 * m_nbValuesPerBit];
 }
 
 Reader::~Reader()
 {
     if (m_preambleRed != nullptr)
     {
-        delete m_preambleRed;
+        delete[] m_preambleRed;
         m_preambleRed = nullptr;
     }
 
     if (m_cpxSignal != nullptr)
     {
-        delete m_cpxSignal;
+        delete[] m_cpxSignal;
         m_cpxSignal = nullptr;
     }
 
     if (m_cpxPreamble != nullptr)
     {
-        delete m_cpxPreamble;
+        delete[] m_cpxPreamble;
         m_cpxPreamble = nullptr;
     }
 
     if (m_cpxCorr != nullptr)
     {
-        delete m_cpxCorr;
+        delete[] m_cpxCorr;
         m_cpxCorr = nullptr;
     }
 }
@@ -47,15 +48,12 @@ void Reader::initReader(rp_acq_decimation_t decimation_, float freq_, uint16_t r
     m_genFreq = freq_;
     m_decimation = decimation_;
 
-    m_nbValuesPerBit = static_cast<float>(1000000 * m_genRedundancy) / (m_genFreq * static_cast<float>(this->decimationToDurationUs()));
-
-    m_preambleRed = new float[static_cast<uint32_t>(8 * round(m_nbValuesPerBit))];
     std::bitset<8> preambleBitset(m_preamble);
     for (int8_t j = 8; j >= 0; j--)
     {
-        for (uint32_t i = 0; i < static_cast<uint32_t>(round(m_nbValuesPerBit)); i++)
+        for (uint32_t i = 0; i < m_nbValuesPerBit; i++)
         {
-            m_preambleRed[(i * static_cast<uint32_t>(round(m_nbValuesPerBit))) + (8 - j - 1)] = preambleBitset[j];
+            m_preambleRed[(i * m_nbValuesPerBit) + (8 - j - 1)] = preambleBitset[j];
         }
     }
 
@@ -83,7 +81,7 @@ void Reader::resetReader()
     }
 }
 
-void Reader::analyseBuffer(const float *buffer_, uint32_t buffSize_, bool *dataOut_, uint32_t size_)
+void Reader::analyseBuffer(const float *buffer_, uint32_t buffSize_, uint8_t *dataOut_, uint32_t size_)
 {
 
 
@@ -109,9 +107,9 @@ void Reader::analyseBuffer(const float *buffer_, uint32_t buffSize_, bool *dataO
         // Preamble
         for (uint32_t i = 0; i < ADC_BUFFER_SIZE; i++)
         {
-            if (i < (static_cast<uint32_t>(round(m_nbValuesPerBit)) * 8))
+            if (i < (m_nbValuesPerBit * 8))
             {
-                m_cpxPreamble[i].r = m_preambleRed[i];
+                m_cpxPreamble[i].r =static_cast<float>(m_preambleRed[i]);
             }
             else
             {
@@ -143,9 +141,9 @@ void Reader::analyseBuffer(const float *buffer_, uint32_t buffSize_, bool *dataO
             uint32_t realIndex = (i < ADC_BUFFER_SIZE) ? i : i % ADC_BUFFER_SIZE;
             tempAverage += buffer_[realIndex];
             count++;
-            if ((count % static_cast<uint32_t>(round(m_nbValuesPerBit))) == 0)
+            if ((count % m_nbValuesPerBit) == 0)
             {
-                tempAverage /= m_nbValuesPerBit;
+                tempAverage /= static_cast<float>(m_nbValuesPerBit);
                 dataOut_[outIndex] = static_cast<bool>(round(tempAverage));
                 count = 1;
             }
@@ -212,7 +210,7 @@ uint32_t Reader::maxCorrIndex(kiss_fft_cpx *interCorr_, uint32_t size_) const
     return res;
 }
 
-void Reader::extractBytes(bool *rawData_, uint32_t rawSize_, uint8_t *utilData_, uint32_t utilSize_)
+void Reader::extractBytes(uint8_t *rawData_, uint32_t rawSize_, uint8_t *utilData_, uint32_t utilSize_)
 {
     if ((rawSize_ / 8) != utilSize_)
     {
