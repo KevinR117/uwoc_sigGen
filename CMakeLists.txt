@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5.1)
-project(test_server)
+project(uwoc_sigGen)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -12,9 +12,6 @@ add_definitions(-DBOOST_SYSTEM_NO_DEPRECATED)
 set(librp /opt/redpitaya/lib/librp.so)
 set(librp_include /opt/redpitaya/include)
 
-add_executable(main main.cpp generator.cpp generator_thread.cpp buffer.cpp reader.cpp reader_thread.cpp kiss_fft.c)
-target_include_directories(main PUBLIC ${Boost_INCLUDE_DIRS})
-target_include_directories(main PUBLIC ${librp_include})
-target_link_libraries(main PUBLIC ${Boost_LIBRARIES})
-target_link_libraries(main PUBLIC ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(main PUBLIC ${librp})
+add_executable(uwoc_sigGen main.cpp generator.cpp generator_thread.cpp buffer.cpp reader.cpp reader_thread.cpp kiss_fft.c)
+target_include_directories(uwoc_sigGen PUBLIC ${Boost_INCLUDE_DIRS} ${librp_include})
+target_link_libraries(uwoc_sigGen PUBLIC ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} ${librp})
