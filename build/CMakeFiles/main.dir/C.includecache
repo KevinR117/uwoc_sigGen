@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/root/uwoc_sigGen/_kiss_fft_guts.h
+kiss_fft.h
+/root/uwoc_sigGen/kiss_fft.h
+limits.h
+-
+alloca.h
+-
+
+/root/uwoc_sigGen/kiss_fft.c
+_kiss_fft_guts.h
+/root/uwoc_sigGen/_kiss_fft_guts.h
+
+/root/uwoc_sigGen/kiss_fft.h
+stdlib.h
+-
+stdio.h
+-
+math.h
+-
+string.h
+-
+xmmintrin.h
+-
+sys/types.h
+-
+
