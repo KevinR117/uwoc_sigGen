@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/signal_generator
+CMAKE_SOURCE_DIR = /root/uwoc_sigGen
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/signal_generator/build
+CMAKE_BINARY_DIR = /root/uwoc_sigGen/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/signal_generator/build/CMakeFiles /root/signal_generator/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/uwoc_sigGen/build/CMakeFiles /root/uwoc_sigGen/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/signal_generator/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/uwoc_sigGen/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,6 +123,114 @@ main/fast:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+buffer.o: buffer.cpp.o
+
+.PHONY : buffer.o
+
+# target to build an object file
+buffer.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/buffer.cpp.o
+.PHONY : buffer.cpp.o
+
+buffer.i: buffer.cpp.i
+
+.PHONY : buffer.i
+
+# target to preprocess a source file
+buffer.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/buffer.cpp.i
+.PHONY : buffer.cpp.i
+
+buffer.s: buffer.cpp.s
+
+.PHONY : buffer.s
+
+# target to generate assembly for a file
+buffer.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/buffer.cpp.s
+.PHONY : buffer.cpp.s
+
+generator.o: generator.cpp.o
+
+.PHONY : generator.o
+
+# target to build an object file
+generator.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/generator.cpp.o
+.PHONY : generator.cpp.o
+
+generator.i: generator.cpp.i
+
+.PHONY : generator.i
+
+# target to preprocess a source file
+generator.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/generator.cpp.i
+.PHONY : generator.cpp.i
+
+generator.s: generator.cpp.s
+
+.PHONY : generator.s
+
+# target to generate assembly for a file
+generator.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/generator.cpp.s
+.PHONY : generator.cpp.s
+
+generator_thread.o: generator_thread.cpp.o
+
+.PHONY : generator_thread.o
+
+# target to build an object file
+generator_thread.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/generator_thread.cpp.o
+.PHONY : generator_thread.cpp.o
+
+generator_thread.i: generator_thread.cpp.i
+
+.PHONY : generator_thread.i
+
+# target to preprocess a source file
+generator_thread.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/generator_thread.cpp.i
+.PHONY : generator_thread.cpp.i
+
+generator_thread.s: generator_thread.cpp.s
+
+.PHONY : generator_thread.s
+
+# target to generate assembly for a file
+generator_thread.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/generator_thread.cpp.s
+.PHONY : generator_thread.cpp.s
+
+kiss_fft.o: kiss_fft.c.o
+
+.PHONY : kiss_fft.o
+
+# target to build an object file
+kiss_fft.c.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/kiss_fft.c.o
+.PHONY : kiss_fft.c.o
+
+kiss_fft.i: kiss_fft.c.i
+
+.PHONY : kiss_fft.i
+
+# target to preprocess a source file
+kiss_fft.c.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/kiss_fft.c.i
+.PHONY : kiss_fft.c.i
+
+kiss_fft.s: kiss_fft.c.s
+
+.PHONY : kiss_fft.s
+
+# target to generate assembly for a file
+kiss_fft.c.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/kiss_fft.c.s
+.PHONY : kiss_fft.c.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -150,6 +258,60 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+reader.o: reader.cpp.o
+
+.PHONY : reader.o
+
+# target to build an object file
+reader.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/reader.cpp.o
+.PHONY : reader.cpp.o
+
+reader.i: reader.cpp.i
+
+.PHONY : reader.i
+
+# target to preprocess a source file
+reader.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/reader.cpp.i
+.PHONY : reader.cpp.i
+
+reader.s: reader.cpp.s
+
+.PHONY : reader.s
+
+# target to generate assembly for a file
+reader.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/reader.cpp.s
+.PHONY : reader.cpp.s
+
+reader_thread.o: reader_thread.cpp.o
+
+.PHONY : reader_thread.o
+
+# target to build an object file
+reader_thread.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/reader_thread.cpp.o
+.PHONY : reader_thread.cpp.o
+
+reader_thread.i: reader_thread.cpp.i
+
+.PHONY : reader_thread.i
+
+# target to preprocess a source file
+reader_thread.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/reader_thread.cpp.i
+.PHONY : reader_thread.cpp.i
+
+reader_thread.s: reader_thread.cpp.s
+
+.PHONY : reader_thread.s
+
+# target to generate assembly for a file
+reader_thread.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/reader_thread.cpp.s
+.PHONY : reader_thread.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -159,9 +321,27 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
+	@echo "... buffer.o"
+	@echo "... buffer.i"
+	@echo "... buffer.s"
+	@echo "... generator.o"
+	@echo "... generator.i"
+	@echo "... generator.s"
+	@echo "... generator_thread.o"
+	@echo "... generator_thread.i"
+	@echo "... generator_thread.s"
+	@echo "... kiss_fft.o"
+	@echo "... kiss_fft.i"
+	@echo "... kiss_fft.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... reader.o"
+	@echo "... reader.i"
+	@echo "... reader.s"
+	@echo "... reader_thread.o"
+	@echo "... reader_thread.i"
+	@echo "... reader_thread.s"
 .PHONY : help
 
 
