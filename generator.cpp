@@ -2,6 +2,7 @@
 
 #include <chrono>
 
+/// \brief              Destructor
 Generator::~Generator()
 {
     if (m_waveform != nullptr)
@@ -11,6 +12,7 @@ Generator::~Generator()
     }
 }
 
+/// \brief              Set parameters to the generator object
 void Generator::setParameters(float amp_, float freq_, uint32_t waveformSize_)
 {
     if (amp_ < 0)
@@ -37,6 +39,7 @@ void Generator::setParameters(float amp_, float freq_, uint32_t waveformSize_)
     this->applyParameters();
 }
 
+/// \brief              Initialize card generator
 void Generator::initGen(redundancy_t redundancy_)
 {
     // Set redundancy
@@ -64,6 +67,7 @@ void Generator::initGen(redundancy_t redundancy_)
     }
 }
 
+/// \brief              Reset card generator to default parameters
 void Generator::resetGen()
 {
     if (rp_IsApiInit())
@@ -76,6 +80,7 @@ void Generator::resetGen()
     }
 }
 
+/// \brief              Get bit duration in nanoseconds
 float Generator::bitDurationNs() const
 {
     float res;
@@ -83,6 +88,7 @@ float Generator::bitDurationNs() const
     return res;
 }
 
+/// \brief              Apply generator parameters to the card
 void Generator::applyParameters()
 {
     if (rp_IsApiInit())
@@ -101,6 +107,7 @@ void Generator::applyParameters()
     }
 }
 
+/// \brief              Store a new waveform into the generator object
 void Generator::genWaveform(const bool *data_, uint32_t size_) const
 {
     if (rp_IsApiInit())
@@ -129,6 +136,7 @@ void Generator::genWaveform(const bool *data_, uint32_t size_) const
     }
 }
 
+/// \brief              Generate the waveform on the output analog port of the RP card
 void Generator::generate() const
 {
     if (rp_IsApiInit())

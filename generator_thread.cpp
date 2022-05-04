@@ -1,5 +1,6 @@
 #include "generator_thread.h"
 
+/// \brief              Assign constructor
 GeneratorThread::GeneratorThread()
 {
     m_stopGenThread = new std::atomic<bool>();
@@ -8,6 +9,7 @@ GeneratorThread::GeneratorThread()
     m_buffer = new Buffer(BUFF_SIZE);
 }
 
+/// \brief              Destructor
 GeneratorThread::~GeneratorThread()
 {
     if (m_stopGenThread != nullptr)
@@ -23,6 +25,7 @@ GeneratorThread::~GeneratorThread()
     }
 }
 
+/// \brief              Initialize thread
 void GeneratorThread::init()
 {
     m_buffer->init();
@@ -32,11 +35,13 @@ void GeneratorThread::init()
     m_generatorInstance.setParameters(AMP, FREQ, WAVEFORM_SIZE);
 }
 
+/// \brief              Start thread
 void GeneratorThread::start()
 {
     m_genThread = std::thread([this]() -> void {
         while (!(*m_stopGenThread))
         {
+            // If data is available in the queue, send it in frames
             if (m_buffer->available(FRAME_SIZE_BYTES))
             {
                 this->sendNextFrame();
@@ -45,6 +50,7 @@ void GeneratorThread::start()
     });
 }
 
+/// \brief              Stop thread
 void GeneratorThread::stop()
 {
     *m_stopGenThread = true;
@@ -55,23 +61,21 @@ void GeneratorThread::stop()
     }
 }
 
+/// \brief              Add data into the thread queue
 void GeneratorThread::addData(uint8_t *data_, uint32_t size_)
 {
-    while (!m_buffer->addVals(data_, size_))
-    {
-        std::this_thread::yield();
-    }
+    m_buffer->addVals(data_, size_);
 }
 
+/// \brief              Send the next frame in the queue
 void GeneratorThread::sendNextFrame()
 {
-    std::cout << "SENT FRAME" << std::endl;
     uint8_t byteSize = 8;
     uint8_t bytes[FRAME_SIZE_BYTES];
-    m_buffer->readAvailable(FRAME_SIZE_BYTES, bytes, FRAME_SIZE_BYTES);
+    m_buffer->readAvailable(FRAME_SIZE_BYTES, bytes);
     bool bits[FRAME_SIZE_BITS];
 
-    // Preamble
+    // Preamble (apply redundancy)
     std::bitset<8> preamble(PREAMBLE);
     for (int8_t j = byteSize - 1; j >= 0; j--)
     {
@@ -81,7 +85,7 @@ void GeneratorThread::sendNextFrame()
         }
     }
 
-    // Rest of data
+    // Rest of data (apply redundancy)
     for (uint32_t k = 0; k < FRAME_SIZE_BYTES; k++)
     {
         std::bitset<8> byte(bytes[k]);
@@ -95,6 +99,4 @@ void GeneratorThread::sendNextFrame()
     }
     // Generate
     m_generatorInstance.genWaveform(bits, FRAME_SIZE_BITS);
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(250));
 }

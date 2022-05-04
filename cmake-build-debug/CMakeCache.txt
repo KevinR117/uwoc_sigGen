@@ -228,6 +228,9 @@ uwoc_sigGen_BINARY_DIR:STATIC=/Users/kevinrives/CLionProjects/uwoc_sigGen/cmake-
 //Value Computed by CMake
 uwoc_sigGen_IS_TOP_LEVEL:STATIC=ON
 
+//Dependencies for the target
+uwoc_sigGen_LIB_DEPENDS:STATIC=general;/opt/redpitaya/lib/librp.so;
+
 //Value Computed by CMake
 uwoc_sigGen_SOURCE_DIR:STATIC=/Users/kevinrives/CLionProjects/uwoc_sigGen
 

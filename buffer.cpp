@@ -1,10 +1,12 @@
 #include "buffer.h"
 
+/// \brief              Constructor
 Buffer::Buffer(uint32_t size_)
-    : m_buffSize(size_)
+        : m_buffSize(size_)
 {
 }
 
+/// \brief              Destructor
 Buffer::~Buffer()
 {
     if (m_content != nullptr) {
@@ -22,6 +24,7 @@ Buffer::~Buffer()
     }
 }
 
+/// \brief              Init buffer content
 void Buffer::init()
 {
     // Initialize values
@@ -32,11 +35,13 @@ void Buffer::init()
     }
 }
 
+/// \brief              Get the buffer capacity
 uint32_t Buffer::size() const
 {
     return m_buffSize;
 }
 
+/// \brief              Tells if enough data is available for reading
 bool Buffer::available(uint32_t threshold_) const
 {
     if (m_endRead < m_beginRead)
@@ -49,7 +54,8 @@ bool Buffer::available(uint32_t threshold_) const
     }
 }
 
-bool Buffer::addVals(const uint8_t *data_, uint32_t size_)
+/// \brief              Add values to the buffer (into the free space)
+void Buffer::addVals(const uint8_t *data_, uint32_t size_)
 {
     if (m_content == nullptr)
     {
@@ -57,10 +63,11 @@ bool Buffer::addVals(const uint8_t *data_, uint32_t size_)
     }
     if (size_ > m_buffSize)
     {
-        return false;
+        throw std::invalid_argument("Data size too long");
     }
     else
     {
+        // Mutual access protection
         m_mutex.lock();
 
         uint32_t tempEnd = m_endRead;
@@ -74,12 +81,13 @@ bool Buffer::addVals(const uint8_t *data_, uint32_t size_)
             m_endRead++;
         }
 
+        // End of the critical section
         m_mutex.unlock();
-        return true;
     }
 }
 
-uint32_t Buffer::readAvailable(uint32_t allocatedSize_, uint8_t* dataOut_, uint32_t maxReadSize_)
+/// \brief              Read data that is available
+uint32_t Buffer::readAvailable(uint32_t allocatedSize_, uint8_t* dataOut_)
 {
     if (m_content == nullptr)
     {
@@ -87,24 +95,17 @@ uint32_t Buffer::readAvailable(uint32_t allocatedSize_, uint8_t* dataOut_, uint3
     }
     else
     {
+        // Mutual access protection
         m_mutex.lock();
 
         uint32_t resSize;
         if (m_endRead < m_beginRead)
         {
             resSize = m_buffSize - m_beginRead + m_endRead;
-            if (resSize > maxReadSize_)
-            {
-                resSize = maxReadSize_;
-            }
         }
         else
         {
             resSize = m_endRead - m_beginRead;
-            if (resSize > maxReadSize_)
-            {
-                resSize = maxReadSize_;
-            }
         }
 
         if (resSize > allocatedSize_)
@@ -122,22 +123,27 @@ uint32_t Buffer::readAvailable(uint32_t allocatedSize_, uint8_t* dataOut_, uint3
             }
         }
 
+        // End of the critical section
         m_mutex.unlock();
 
+        // The result size might be different from the allocated size
         return resSize;
     }
 }
 
+/// \brief              Access to the buffer content
 uint8_t** Buffer::buff() const
 {
     return m_content;
 }
 
+/// \brief              Begin index of the available data for reading zone
 uint32_t Buffer::beginIndex() const
 {
     return m_beginRead;
 }
 
+/// \brief              End index of the available data for reading zone
 uint32_t Buffer::endIndex() const
 {
     return m_endRead;

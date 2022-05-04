@@ -1,5 +1,6 @@
 #include "reader_thread.h"
 
+/// \brief              Constructor
 ReaderThread::ReaderThread()
 {
     m_stopReadThread = new std::atomic<bool>();
@@ -10,6 +11,7 @@ ReaderThread::ReaderThread()
     m_utilBuffer = new uint8_t[FRAME_SIZE];
 }
 
+/// \brief              Destructor
 ReaderThread::~ReaderThread()
 {
     if (m_stopReadThread != nullptr)
@@ -37,6 +39,7 @@ ReaderThread::~ReaderThread()
     }
 }
 
+/// \brief              Initialize thread
 void ReaderThread::init()
 {
     m_readerInstance.resetReader();
@@ -44,6 +47,7 @@ void ReaderThread::init()
     m_readerInstance.initReader(DECIMATION, FREQ, RED);
 }
 
+/// \brief              Start thread
 void ReaderThread::start()
 {
     m_readThread = std::thread([this]() -> void {
@@ -58,6 +62,7 @@ void ReaderThread::start()
     });
 }
 
+/// \brief              Stop thread
 void ReaderThread::stop()
 {
     *m_stopReadThread = true;
@@ -68,6 +73,7 @@ void ReaderThread::stop()
     }
 }
 
+/// \brief              Print extracted util data (without redundancy)
 void ReaderThread::printReceivedContent() const
 {
     std::cout << "RECEIVED : ";

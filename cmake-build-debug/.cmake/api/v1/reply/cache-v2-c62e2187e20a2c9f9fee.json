@@ -1230,6 +1230,18 @@
 			"value" : "ON"
 		},
 		{
+			"name" : "uwoc_sigGen_LIB_DEPENDS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Dependencies for the target"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "general;/opt/redpitaya/lib/librp.so;"
+		},
+		{
 			"name" : "uwoc_sigGen_SOURCE_DIR",
 			"properties" : 
 			[

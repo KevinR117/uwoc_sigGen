@@ -2,6 +2,7 @@
 
 #include "reader.h"
 
+/// \brief              Constructor
 Reader::Reader()
 {
     m_cpxSignal = new kiss_fft_cpx[ADC_BUFFER_SIZE];
@@ -10,6 +11,7 @@ Reader::Reader()
     m_preambleRed = new uint8_t[8 * m_nbValuesPerBit];
 }
 
+/// \brief              Destructor
 Reader::~Reader()
 {
     if (m_preambleRed != nullptr)
@@ -37,17 +39,20 @@ Reader::~Reader()
     }
 }
 
+/// \brief              Set parameters necessary to the reader
 void Reader::setParameters(uint8_t preamble_)
 {
     m_preamble = preamble_;
 }
 
+/// \brief              Initialize reader object
 void Reader::initReader(rp_acq_decimation_t decimation_, float freq_, uint16_t redundancy_)
 {
     m_genRedundancy = redundancy_;
     m_genFreq = freq_;
     m_decimation = decimation_;
 
+    // Apply redundancy factor to the preamble (in order to be used later)
     std::bitset<8> preambleBitset(m_preamble);
     for (int8_t j = 8; j >= 0; j--)
     {
@@ -57,6 +62,7 @@ void Reader::initReader(rp_acq_decimation_t decimation_, float freq_, uint16_t r
         }
     }
 
+    // Initialize RP input
     if (rp_IsApiInit())
     {
         rp_AcqSetDecimation(m_decimation);
@@ -69,6 +75,7 @@ void Reader::initReader(rp_acq_decimation_t decimation_, float freq_, uint16_t r
     }
 }
 
+/// \brief              Reset reader parameters to default ones
 void Reader::resetReader()
 {
     if (rp_IsApiInit())
@@ -81,6 +88,7 @@ void Reader::resetReader()
     }
 }
 
+/// \brief              Extract the received frame as raw data
 void Reader::analyseBuffer(const float *buffer_, uint32_t buffSize_, uint8_t *dataOut_, uint32_t size_)
 {
 
@@ -151,6 +159,7 @@ void Reader::analyseBuffer(const float *buffer_, uint32_t buffSize_, uint8_t *da
     }
 }
 
+/// \brief              Fill a receive buffer with data from RP analog input
 void Reader::readAnalog(float* buffer_, uint32_t buffSize_, rp_acq_trig_state_t& state_, std::atomic<bool>* stopWaiting_)
 {
     if (rp_IsApiInit())
@@ -161,24 +170,24 @@ void Reader::readAnalog(float* buffer_, uint32_t buffSize_, rp_acq_trig_state_t&
         }
         else
         {
-	    rp_AcqStart();
-	    rp_AcqSetTriggerSrc(RP_TRIG_SRC_CHA_PE);
-	    while(true)
-	    {
-		if (*stopWaiting_)
-		{
-		    break;
-		}
-		rp_AcqGetTriggerState(&state_);
-		if (state_ == RP_TRIG_STATE_TRIGGERED)
-		{
-		    std::cout << "TRIGGERED" << std::endl;
-		    break;
-		}
-	    }
-	    rp_AcqStop();	
+            rp_AcqStart();
+            rp_AcqSetTriggerSrc(RP_TRIG_SRC_CHA_PE);
+            while(true)
+            {
+                if (*stopWaiting_)
+                {
+                    break;
+                }
+                rp_AcqGetTriggerState(&state_);
+                if (state_ == RP_TRIG_STATE_TRIGGERED)
+                {
+                    std::cout << "TRIGGERED" << std::endl;
+                    break;
+                }
+            }
+            rp_AcqStop();
 
-            // When triggered
+            // Read when triggered
             rp_AcqGetOldestDataV(RP_CH_1, &buffSize_, buffer_);
         }
     }
@@ -188,6 +197,7 @@ void Reader::readAnalog(float* buffer_, uint32_t buffSize_, rp_acq_trig_state_t&
     }
 }
 
+/// \brief              Find the beginning index of the frame
 uint32_t Reader::maxCorrIndex(kiss_fft_cpx *interCorr_, uint32_t size_) const
 {
     uint32_t res = 0;
@@ -198,6 +208,7 @@ uint32_t Reader::maxCorrIndex(kiss_fft_cpx *interCorr_, uint32_t size_) const
     else
     {
         auto temp = static_cast<float>(0);
+        // Look for the maximum correlation where the frame begin
         for (uint32_t i = 0; i < ADC_BUFFER_SIZE; i++)
         {
             if (interCorr_[i].r > temp)
@@ -210,6 +221,7 @@ uint32_t Reader::maxCorrIndex(kiss_fft_cpx *interCorr_, uint32_t size_) const
     return res;
 }
 
+/// \brief              Extract util data from raw data (and delete redundancy of data)
 void Reader::extractBytes(uint8_t *rawData_, uint32_t rawSize_, uint8_t *utilData_, uint32_t utilSize_)
 {
     if ((rawSize_ / 8) != utilSize_)
@@ -220,16 +232,19 @@ void Reader::extractBytes(uint8_t *rawData_, uint32_t rawSize_, uint8_t *utilDat
     {
         for (uint32_t i = 0; i < utilSize_; i++)
         {
+            // Easier with a bitset object that we fill with util data
             std::bitset<8> val;
             for (int8_t j = 7; j >= 0; j++)
             {
                 val[j] = rawData_[(i * 8) + j];
             }
+            // Finally, cast it to get the real data
             utilData_[i] = static_cast<uint8_t>(val.to_ulong());
         }
     }
 }
 
+/// \brief              Get bit duration in microseconds according to the decimation factor
 uint32_t Reader::decimationToDurationUs()
 {
     switch(m_decimation)
